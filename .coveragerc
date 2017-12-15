@@ -1,7 +1,7 @@
 [run]
 branch = True
-source = shablona/*
-include = shablona/*
+source = tilelit/*
+include = tilelit/*
 omit = */setup.py
 [report]
-include = shablona/*
+include = tilelit/*
