@@ -1,6 +1,7 @@
 """tilelit : make coextensive tiles from massive images."""
 import numpy as np
 
+import skimage.io as sio
 from skimage.measure import ransac
 from skimage.feature import match_descriptors, ORB
 from skimage import transform as tf
@@ -11,6 +12,24 @@ from dipy.align.imaffine import (MutualInformationMetric,
                                  AffineRegistration)
 
 from dipy.align.transforms import AffineTransform2D
+
+
+def tiff_resize(fname, factor=10):
+    """
+    Resize a massive tiff file by a factor.
+
+    Paramters
+    ---------
+    fname : str
+        The name of the image file to read
+
+    factor : int
+        The compression factor (default: 10)
+    """
+    massive = sio.imread(fname)
+    return tf.resize(massive,
+                     (massive.shape[0]//factor,
+                      massive.shape[1]//factor))
 
 
 def plot_together(image1, image2):
