@@ -1,2 +1,4 @@
+tifffile
 scikit_image
 dipy
+boto3
