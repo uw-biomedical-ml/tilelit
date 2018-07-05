@@ -173,8 +173,8 @@ def make_tiles(case, bucket, aff, box_size=(280, 280)):
                                              np.arange(y_center - box_size[0] // 2, y_center + box_size[0] // 2))
 
             coords = np.array(list(zip(x_coords.ravel(), y_coords.ravel(), np.ones(np.product(box_size))))).astype(int)
-            if not (np.any(coords[:, 0] > im_stain_orig.shape[0]) or 
-                    np.any(coords[:, 1] > im_stain_orig.shape[1])):
+            if not (np.any(coords[:, 0] >= im_stain_orig.shape[0]) or 
+                    np.any(coords[:, 1] >= im_stain_orig.shape[1])):
                 im_stain_tile = im_stain_orig[(coords[:, 0], coords[:, 1])].reshape(box_size + (-1, ))
                 trans_coords = (np.round(np.dot(aff, coords.T))).T.astype(int)
                 if not (np.any(trans_coords < 0) or 
